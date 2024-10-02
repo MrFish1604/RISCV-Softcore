@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Wed Oct  2 14:52:15 2024
+Analysis & Synthesis Status : Successful - Wed Oct  2 16:25:04 2024
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : tp_rom
-Top-level Entity Name : single_port_rom_async
+Top-level Entity Name : single_port_ram_async
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 0
-Total pins : 16
+Total registers : 512
+Total pins : 24
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0

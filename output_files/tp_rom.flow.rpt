@@ -1,5 +1,5 @@
 Flow report for tp_rom
-Wed Oct  2 14:53:17 2024
+Wed Oct  2 16:26:20 2024
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,16 +41,16 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Oct  2 14:53:17 2024       ;
+; Flow Status                     ; Successful - Wed Oct  2 16:26:20 2024       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; tp_rom                                      ;
-; Top-level Entity Name           ; single_port_rom_async                       ;
+; Top-level Entity Name           ; single_port_ram_async                       ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC7C7F23C8                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 1 / 56,480 ( < 1 % )                        ;
-; Total registers                 ; 0                                           ;
-; Total pins                      ; 16 / 268 ( 6 % )                            ;
+; Logic utilization (in ALMs)     ; 340 / 56,480 ( < 1 % )                      ;
+; Total registers                 ; 512                                         ;
+; Total pins                      ; 24 / 268 ( 9 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 7,024,640 ( 0 % )                       ;
 ; Total DSP Blocks                ; 0 / 156 ( 0 % )                             ;
@@ -68,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/02/2024 14:52:08 ;
+; Start date & time ; 10/02/2024 16:24:54 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; tp_rom              ;
 +-------------------+---------------------+
@@ -79,30 +79,35 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------+-----------------------+-----------------------------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name           ; Section Id                        ;
 +--------------------------------------+----------------------------------------+---------------+-----------------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID                ; 240676018662134.172787352812662        ; --            ; --                    ; --                                ;
+; COMPILER_SIGNATURE_ID                ; 240676018662134.172787909427713        ; --            ; --                    ; --                                ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --                    ; tb_mem                            ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --                    ; tb_ram                            ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_signal_integrity ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_symbol           ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_mem                                 ; --            ; --                    ; eda_simulation                    ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_ram                                 ; --            ; --                    ; eda_simulation                    ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --                    ; eda_simulation                    ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>        ; --                    ; --                                ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --                    ; eda_simulation                    ;
 ; EDA_TEST_BENCH_FILE                  ; tb_mem.vhd                             ; --            ; --                    ; tb_mem                            ;
+; EDA_TEST_BENCH_FILE                  ; tb_ram.vhd                             ; --            ; --                    ; tb_ram                            ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_mem                                 ; --            ; --                    ; tb_mem                            ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_ram                                 ; --            ; --                    ; tb_ram                            ;
 ; EDA_TEST_BENCH_NAME                  ; tb_mem                                 ; --            ; --                    ; eda_simulation                    ;
+; EDA_TEST_BENCH_NAME                  ; tb_ram                                 ; --            ; --                    ; eda_simulation                    ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 300 ns                                 ; --            ; --                    ; tb_mem                            ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --                    ; tb_ram                            ;
 ; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --                    ; eda_simulation                    ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --                    ; --                                ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --                    ; --                                ;
-; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; single_port_rom_async ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; single_port_rom_async ; Top                               ;
-; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; single_port_rom_async ; Top                               ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; single_port_ram_async ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; single_port_ram_async ; Top                               ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; single_port_ram_async ; Top                               ;
 ; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --            ; --                    ; --                                ;
 ; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --                    ; --                                ;
 ; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --            ; --                    ; --                                ;
-; TOP_LEVEL_ENTITY                     ; single_port_rom_async                  ; tp_rom        ; --                    ; --                                ;
+; TOP_LEVEL_ENTITY                     ; single_port_ram_async                  ; tp_rom        ; --                    ; --                                ;
 +--------------------------------------+----------------------------------------+---------------+-----------------------+-----------------------------------+
 
 
@@ -111,12 +116,12 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 700 MB              ; 00:00:21                           ;
-; Fitter               ; 00:00:41     ; 1.0                     ; 2073 MB             ; 00:01:30                           ;
-; Assembler            ; 00:00:10     ; 1.0                     ; 707 MB              ; 00:00:10                           ;
-; Timing Analyzer      ; 00:00:06     ; 1.0                     ; 1033 MB             ; 00:00:06                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 895 MB              ; 00:00:01                           ;
-; Total                ; 00:01:06     ; --                      ; --                  ; 00:02:08                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 700 MB              ; 00:00:25                           ;
+; Fitter               ; 00:00:52     ; 1.0                     ; 2145 MB             ; 00:02:06                           ;
+; Assembler            ; 00:00:10     ; 1.0                     ; 722 MB              ; 00:00:11                           ;
+; Timing Analyzer      ; 00:00:09     ; 1.4                     ; 1099 MB             ; 00:00:11                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 900 MB              ; 00:00:01                           ;
+; Total                ; 00:01:22     ; --                      ; --                  ; 00:02:54                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
