@@ -1,0 +1,105 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/matt/Documents/TN/CSsP/TPs/tp_rom/simulation/qsim
+Esingle_port_rom_async
+Z1 w1727872121
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z4 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 3HQPc5MVbmOPN?>a5EBYj2
+Z5 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z6 DPx8 cyclonev 19 cyclonev_components 0 22 jZ]H46BQLgIP5mfRTO`3B1
+Z7 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z8 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z9 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 ^Ch;U@;bMk1;>A2B<UV`k2
+!i122 4
+R0
+Z10 8tp_rom.vho
+Z11 Ftp_rom.vho
+l0
+L38 1
+VH2;b421lRoN=l:G4SCT<J1
+!s100 eET633ce43TlC><8``0OW2
+Z12 OV;C;2020.1;71
+32
+Z13 !s110 1727872121
+!i10b 1
+Z14 !s108 1727872121.000000
+Z15 !s90 -work|work|tp_rom.vho|
+Z16 !s107 tp_rom.vho|
+!i113 1
+Z17 o-work work
+Z18 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+DEx4 work 21 single_port_rom_async 0 22 H2;b421lRoN=l:G4SCT<J1
+!i122 4
+l86
+L64 234
+Vo>1WLYB>KdnehXi;K_M8j3
+!s100 f9=aKgZLcch5^9P4VcXS@2
+R12
+32
+R13
+!i10b 1
+R14
+R15
+R16
+!i113 1
+R17
+R18
+Esingle_port_rom_async_vhd_vec_tst
+Z19 w1727872120
+R7
+R8
+!i122 5
+R0
+Z20 8Waveform1.vwf.vht
+Z21 FWaveform1.vwf.vht
+l0
+L32 1
+VD@`2AL1eg17PZ2[eGn3TU0
+!s100 6gXom>@:fGIU1PgGaZDX;1
+R12
+32
+R13
+!i10b 1
+R14
+Z22 !s90 -work|work|Waveform1.vwf.vht|
+Z23 !s107 Waveform1.vwf.vht|
+!i113 1
+R17
+R18
+Asingle_port_rom_async_arch
+R7
+R8
+Z24 DEx4 work 33 single_port_rom_async_vhd_vec_tst 0 22 D@`2AL1eg17PZ2[eGn3TU0
+!i122 5
+l45
+Z25 L34 85
+Z26 Vz8b4c`V6lkmMZ<M83co[M1
+Z27 !s100 Z8g;Sk?^c5;XlYnTNn6:<0
+R12
+32
+R13
+!i10b 1
+R14
+R22
+R23
+!i113 1
+R17
+R18

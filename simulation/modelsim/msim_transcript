@@ -1,0 +1,319 @@
+# do tp_rom_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying /usr/share/quartus/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:47:46 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity single_port_rom_async
+# -- Compiling architecture rtl of single_port_rom_async
+# End time: 14:47:46 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:47:47 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_mem
+# -- Compiling architecture behav of tb_mem
+# End time: 14:47:47 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_mem
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_mem 
+# Start time: 14:47:47 on Oct 02,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_mem(behav)
+# ** Warning: (vsim-3473) Component instance "rom_1 : single_port_rom" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_mem File: /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 300 ns
+restart 
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3473) Component instance "rom_1 : single_port_rom" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_mem File: /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd
+do tp_rom_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:49:43 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity single_port_rom_async
+# -- Compiling architecture rtl of single_port_rom_async
+# End time: 14:49:43 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:49:43 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_mem
+# -- Compiling architecture behav of tb_mem
+# End time: 14:49:43 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_mem
+# End time: 14:49:44 on Oct 02,2024, Elapsed time: 0:01:57
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_mem 
+# Start time: 14:49:44 on Oct 02,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_mem(behav)
+# Loading work.single_port_rom_async(rtl)
+# ** Error: (vsim-3732) No default binding for component instance 'rom_1'.
+#    The following component port is not on the entity:
+#           clk
+#    Time: 0 ps  Iteration: 0  Instance: /tb_mem/rom_1 File: /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd Line: 46
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./tp_rom_run_msim_rtl_vhdl.do PAUSED at line 12
+do tp_rom_run_msim_rtl_vhdl.do
+# transcript on
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:50:31 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity single_port_rom_async
+# -- Compiling architecture rtl of single_port_rom_async
+# End time: 14:50:31 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:50:31 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_mem
+# -- Compiling architecture behav of tb_mem
+# ** Error: /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd(42): (vcom-1484) Unknown formal identifier "clk".
+# ** Note: /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd(53): VHDL Compiler exiting
+# End time: 14:50:31 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: /usr/share/quartus/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+# Error in macro ./tp_rom_run_msim_rtl_vhdl.do line 10
+# /usr/share/quartus/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vcom failed.
+#     while executing
+# "vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}"
+do tp_rom_run_msim_rtl_vhdl.do
+# transcript on
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:50:56 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity single_port_rom_async
+# -- Compiling architecture rtl of single_port_rom_async
+# End time: 14:50:56 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:50:56 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_mem
+# -- Compiling architecture behav of tb_mem
+# End time: 14:50:56 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_mem
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_mem 
+# Start time: 14:49:44 on Oct 02,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_mem(behav)
+# Loading work.single_port_rom_async(rtl)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 300 ns
+do tp_rom_run_msim_rtl_vhdl.do
+# transcript on
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:53:34 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity single_port_rom_async
+# -- Compiling architecture rtl of single_port_rom_async
+# End time: 14:53:34 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:53:34 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_mem
+# -- Compiling architecture behav of tb_mem
+# End time: 14:53:34 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_mem
+# End time: 14:53:35 on Oct 02,2024, Elapsed time: 0:03:51
+# Errors: 2, Warnings: 0
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_mem 
+# Start time: 14:53:35 on Oct 02,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_mem(behav)
+# Loading work.single_port_rom_async(rtl)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 300 ns
+do tp_rom_run_msim_rtl_vhdl.do
+# transcript on
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:56:50 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_rom_async.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity single_port_rom_async
+# -- Compiling architecture rtl of single_port_rom_async
+# End time: 14:56:50 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:56:50 on Oct 02,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_mem.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_mem
+# -- Compiling architecture behav of tb_mem
+# End time: 14:56:50 on Oct 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_mem
+# End time: 14:56:51 on Oct 02,2024, Elapsed time: 0:03:16
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_mem 
+# Start time: 14:56:51 on Oct 02,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_mem(behav)
+# Loading work.single_port_rom_async(rtl)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 300 ns

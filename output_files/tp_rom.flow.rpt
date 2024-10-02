@@ -1,0 +1,146 @@
+Flow report for tp_rom
+Wed Oct  2 14:53:17 2024
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Wed Oct  2 14:53:17 2024       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; tp_rom                                      ;
+; Top-level Entity Name           ; single_port_rom_async                       ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CGXFC7C7F23C8                              ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 1 / 56,480 ( < 1 % )                        ;
+; Total registers                 ; 0                                           ;
+; Total pins                      ; 16 / 268 ( 6 % )                            ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0 / 7,024,640 ( 0 % )                       ;
+; Total DSP Blocks                ; 0 / 156 ( 0 % )                             ;
+; Total HSSI RX PCSs              ; 0 / 6 ( 0 % )                               ;
+; Total HSSI PMA RX Deserializers ; 0 / 6 ( 0 % )                               ;
+; Total HSSI TX PCSs              ; 0 / 6 ( 0 % )                               ;
+; Total HSSI PMA TX Serializers   ; 0 / 6 ( 0 % )                               ;
+; Total PLLs                      ; 0 / 13 ( 0 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 10/02/2024 14:52:08 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; tp_rom              ;
++-------------------+---------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                          ;
++--------------------------------------+----------------------------------------+---------------+-----------------------+-----------------------------------+
+; Assignment Name                      ; Value                                  ; Default Value ; Entity Name           ; Section Id                        ;
++--------------------------------------+----------------------------------------+---------------+-----------------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID                ; 240676018662134.172787352812662        ; --            ; --                    ; --                                ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --                    ; tb_mem                            ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --                    ; eda_board_design_symbol           ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_mem                                 ; --            ; --                    ; eda_simulation                    ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --                    ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>        ; --                    ; --                                ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --                    ; eda_simulation                    ;
+; EDA_TEST_BENCH_FILE                  ; tb_mem.vhd                             ; --            ; --                    ; tb_mem                            ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_mem                                 ; --            ; --                    ; tb_mem                            ;
+; EDA_TEST_BENCH_NAME                  ; tb_mem                                 ; --            ; --                    ; eda_simulation                    ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 300 ns                                 ; --            ; --                    ; tb_mem                            ;
+; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --                    ; eda_simulation                    ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --                    ; --                                ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --                    ; --                                ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; single_port_rom_async ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; single_port_rom_async ; Top                               ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; single_port_rom_async ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --            ; --                    ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --                    ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --            ; --                    ; --                                ;
+; TOP_LEVEL_ENTITY                     ; single_port_rom_async                  ; tp_rom        ; --                    ; --                                ;
++--------------------------------------+----------------------------------------+---------------+-----------------------+-----------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 700 MB              ; 00:00:21                           ;
+; Fitter               ; 00:00:41     ; 1.0                     ; 2073 MB             ; 00:01:30                           ;
+; Assembler            ; 00:00:10     ; 1.0                     ; 707 MB              ; 00:00:10                           ;
+; Timing Analyzer      ; 00:00:06     ; 1.0                     ; 1033 MB             ; 00:00:06                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 895 MB              ; 00:00:01                           ;
+; Total                ; 00:01:06     ; --                      ; --                  ; 00:02:08                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                      ;
++----------------------+------------------+-------------+-------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name     ; OS Version  ; Processor type ;
++----------------------+------------------+-------------+-------------+----------------+
+; Analysis & Synthesis ; fedora           ; Fedora Core ; Fedora Core ; x86_64         ;
+; Fitter               ; fedora           ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler            ; fedora           ; Fedora Core ; Fedora Core ; x86_64         ;
+; Timing Analyzer      ; fedora           ; Fedora Core ; Fedora Core ; x86_64         ;
+; EDA Netlist Writer   ; fedora           ; Fedora Core ; Fedora Core ; x86_64         ;
++----------------------+------------------+-------------+-------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off tp_rom -c tp_rom
+quartus_fit --read_settings_files=off --write_settings_files=off tp_rom -c tp_rom
+quartus_asm --read_settings_files=off --write_settings_files=off tp_rom -c tp_rom
+quartus_sta tp_rom -c tp_rom
+quartus_eda --read_settings_files=off --write_settings_files=off tp_rom -c tp_rom
+
+
+
