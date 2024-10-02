@@ -45,7 +45,7 @@ begin
 
 clk_t <= not clk_t after 5 ns;
 
-addr_t <= 0, 1 after 20 ns, 2 after 40 ns;
+addr_t <= 0, 1 after 20 ns, 2 after 40 ns, 3 after 60 ns, 4 after 80 ns, 5 after 100 ns, 6 after 120 ns, 7 after 140 ns, 8 after 160 ns, 9 after 180 ns, 10 after 200 ns, 11 after 220 ns;
 
 
 
