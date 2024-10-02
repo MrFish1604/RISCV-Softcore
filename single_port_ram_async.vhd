@@ -9,8 +9,8 @@ entity single_port_ram_async is
 
 	generic 
 	(
-		DATA_WIDTH : natural := 8;
-		ADDR_WIDTH : natural := 6
+		DATA_WIDTH : natural := 32;
+		ADDR_WIDTH : natural := 8
 	);
 
 	port 
@@ -36,7 +36,7 @@ architecture rtl of single_port_ram_async is
 	begin 
 		for addr_pos in 0 to 2**ADDR_WIDTH - 1 loop 
 			-- Initialize each address with the address itself
-			tmp(addr_pos) := std_logic_vector(to_unsigned(addr_pos, DATA_WIDTH));
+			tmp(addr_pos) := not std_logic_vector(to_unsigned(addr_pos, DATA_WIDTH));
 		end loop;
 		return tmp;
 	end init_ram;	 
@@ -59,5 +59,5 @@ begin
 		end if;
 	end if;
 	end process;
-		q <= ram(addr);
+	q <= ram(addr);
 end rtl;

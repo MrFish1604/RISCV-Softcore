@@ -11,7 +11,7 @@ architecture behav of tb_ram is
 
     generic 
     (
-        DATA_WIDTH : natural := 8;
+        DATA_WIDTH : natural := 32;
         ADDR_WIDTH : natural := 8
     );
 
@@ -27,9 +27,9 @@ architecture behav of tb_ram is
     end component;
 
     signal addr_t : natural range 0 to 255;
-    signal q_t : std_logic_vector (7 downto 0);
+    signal q_t : std_logic_vector (31 downto 0);
     signal clk_t : std_logic:='0';
-	 signal data_t : std_logic_vector (7 downto 0) := "11111111";
+	 signal data_t : std_logic_vector (31 downto 0);
 	 signal we_t : std_logic:='0';
 
 begin
@@ -38,7 +38,7 @@ begin
 
     generic map
     (
-        DATA_WIDTH => 8,
+        DATA_WIDTH => 32,
         ADDR_WIDTH => 8
     )
 
@@ -53,7 +53,9 @@ begin
 
 clk_t <= not clk_t after 5 ns;
 
-we_t <= '0', '1' after 230 ns;
+we_t <= '0', '1' after 150 ns, '0' after 310 ns;
+
+data_t <= q_t when(addr_t = 7);
 
 addr_t <=	0,
 				1 after 20 ns,
@@ -63,24 +65,22 @@ addr_t <=	0,
 				5 after 100 ns,
 				6 after 120 ns,
 				7 after 140 ns,
-				8 after 160 ns,
-				9 after 180 ns,
-				10 after 200 ns,
-				11 after 220 ns,
-				0 after 240 ns,
-				1 after 260 ns,
-				2 after 280 ns,
-				3 after 300 ns,
-				4 after 320 ns,
-				5 after 340 ns,
-				6 after 360 ns,
-				7 after 380 ns,
-				8 after 400 ns,
-				9 after 420 ns,
-				10 after 440 ns,
-				11 after 460 ns;
-
-
+				0 after 160 ns,
+				1 after 180 ns,
+				2 after 200 ns,
+				3 after 220 ns,
+				4 after 240 ns,
+				5 after 260 ns,
+				6 after 280 ns,
+				7 after 300 ns,
+				0 after 320 ns,
+				1 after 340 ns,
+				2 after 360 ns,
+				3 after 380 ns,
+				4 after 400 ns,
+				5 after 420 ns,
+				6 after 440 ns,
+				7 after 460 ns;
 
 
 
