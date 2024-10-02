@@ -59,10 +59,5 @@ begin
 		end if;
 	end if;
 	end process;
-	
-	--process(addr)
-	--begin
 		q <= ram(addr);
-	--end process;
-
 end rtl;

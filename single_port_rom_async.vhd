@@ -44,10 +44,6 @@ architecture rtl of single_port_rom_async is
 	signal rom : memory_t := init_rom;
 
 begin
-
-	process(addr)
-	begin
 	q <= rom(addr);
-	end process;
 
 end rtl;
