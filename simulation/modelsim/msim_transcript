@@ -9,47 +9,101 @@
 # Copying /usr/share/quartus/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_ram_async.vhd}
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:02:11 on Oct 02,2024
-# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_ram_async.vhd 
+# Start time: 09:21:24 on Oct 16,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity single_port_ram_async
-# -- Compiling architecture rtl of single_port_ram_async
-# End time: 18:02:11 on Oct 02,2024, Elapsed time: 0:00:00
+# -- Compiling entity program_counter
+# -- Compiling architecture rtl of program_counter
+# End time: 09:21:24 on Oct 16,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd}
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:02:11 on Oct 02,2024
-# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd 
+# Start time: 09:21:24 on Oct 16,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity tb_ram
-# -- Compiling architecture behav of tb_ram
-# End time: 18:02:11 on Oct 02,2024, Elapsed time: 0:00:00
+# -- Compiling entity tb_pc
+# -- Compiling architecture behav of tb_pc
+# End time: 09:21:24 on Oct 16,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_ram
-# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_ram 
-# Start time: 18:02:11 on Oct 02,2024
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_pc
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_pc 
+# Start time: 09:21:24 on Oct 16,2024
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
-# Loading work.tb_ram(behav)
-# Loading work.single_port_ram_async(rtl)
+# Loading work.tb_pc(behav)
+# Loading work.program_counter(rtl)
 # 
 # add wave *
 # view structure
 # .main_pane.structure.interior.cs.body.struct
 # view signals
 # .main_pane.objects.interior.cs.body.tree
-# run 500 ns
-# End time: 18:03:56 on Oct 02,2024, Elapsed time: 0:01:45
+# run 50 ns
+do tp_rom_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:22:16 on Oct 16,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity program_counter
+# -- Compiling architecture rtl of program_counter
+# End time: 09:22:16 on Oct 16,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 09:22:16 on Oct 16,2024
+# vcom -reportprogress 300 -93 -work work /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_pc
+# -- Compiling architecture behav of tb_pc
+# End time: 09:22:16 on Oct 16,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_pc
+# End time: 09:22:16 on Oct 16,2024, Elapsed time: 0:00:52
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_pc 
+# Start time: 09:22:16 on Oct 16,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_pc(behav)
+# Loading work.program_counter(rtl)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run 50 ns
+# End time: 09:22:59 on Oct 16,2024, Elapsed time: 0:00:43
 # Errors: 0, Warnings: 0

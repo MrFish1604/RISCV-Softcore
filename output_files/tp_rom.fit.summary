@@ -1,13 +1,13 @@
-Fitter Status : Successful - Wed Oct  2 17:29:21 2024
+Fitter Status : Successful - Wed Oct 16 09:00:52 2024
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : tp_rom
-Top-level Entity Name : single_port_ram_async
+Top-level Entity Name : program_counter
 Family : Cyclone V
 Device : 5CGXFC7C7F23C8
 Timing Models : Final
-Logic utilization (in ALMs) : 6,474 / 56,480 ( 11 % )
-Total registers : 8192
-Total pins : 74 / 268 ( 28 % )
+Logic utilization (in ALMs) : 1 / 56,480 ( < 1 % )
+Total registers : 3
+Total pins : 8 / 268 ( 3 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 7,024,640 ( 0 % )
 Total RAM Blocks : 0 / 686 ( 0 % )

@@ -9,26 +9,26 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/matt/Documents/TN/CSsP/TPs/tp_rom/simulation/modelsim
-Esingle_port_ram_async
-Z1 w1727884140
+Eprogram_counter
+Z1 w1729061986
 Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
 !i122 0
 R0
-Z5 8/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_ram_async.vhd
-Z6 F/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_ram_async.vhd
+Z5 8/home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd
+Z6 F/home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd
 l0
-L8 1
-V;ZOhOA6lED:lM>jB?][gW2
-!s100 1;eXVI:2Hm>lCg?E9MAhZ2
+L5 1
+VLVVWmbITkliGkiE4K1VTG1
+!s100 `C[2R]F8nVAa^PN><lkm51
 Z7 OV;C;2020.1;71
 31
-Z8 !s110 1727884931
+Z8 !s110 1729063336
 !i10b 1
-Z9 !s108 1727884931.000000
-Z10 !s90 -reportprogress|300|-93|-work|work|/home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_ram_async.vhd|
-Z11 !s107 /home/matt/Documents/TN/CSsP/TPs/tp_rom/single_port_ram_async.vhd|
+Z9 !s108 1729063336.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd|
+Z11 !s107 /home/matt/Documents/TN/CSsP/TPs/tp_rom/program_counter.vhd|
 !i113 1
 Z12 o-93 -work work
 Z13 tExplicit 1 CvgOpt 0
@@ -36,12 +36,12 @@ Artl
 R2
 R3
 R4
-DEx4 work 21 single_port_ram_async 0 22 ;ZOhOA6lED:lM>jB?][gW2
+DEx4 work 15 program_counter 0 22 LVVWmbITkliGkiE4K1VTG1
 !i122 0
-l52
-L27 37
-VczEQP^ZdPZga_0LUP;ZWE2
-!s100 6_oX_I;?UQBPn]?0:5_We3
+l24
+L22 13
+VABUC9;zdj;j`8QRiBBKN:1
+!s100 8OM67a^MIoTmSb76ZF15c1
 R7
 31
 R8
@@ -52,26 +52,26 @@ R11
 !i113 1
 R12
 R13
-Etb_ram
-Z14 w1727884803
+Etb_pc
+Z14 w1729063331
 R2
 R3
 R4
 !i122 1
 R0
-Z15 8/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd
-Z16 F/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd
+Z15 8/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd
+Z16 F/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd
 l0
 L5 1
-VlNH@^?9[d3FJ`^;hP=<;h2
-!s100 cC@8AMXS056ilg90aG8WH1
+VHa[blkAUU>zDZYi5hf]@m2
+!s100 HOWHD2f=joi^h87P9RQgh1
 R7
 31
 R8
 !i10b 1
 R9
-Z17 !s90 -reportprogress|300|-93|-work|work|/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd|
-!s107 /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd|
+Z17 !s90 -reportprogress|300|-93|-work|work|/home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd|
+!s107 /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd|
 !i113 1
 R12
 R13
@@ -79,19 +79,19 @@ Abehav
 R2
 R3
 R4
-DEx4 work 6 tb_ram 0 22 lNH@^?9[d3FJ`^;hP=<;h2
+DEx4 work 5 tb_pc 0 22 Ha[blkAUU>zDZYi5hf]@m2
 !i122 1
-l35
-L8 80
-V`NJKlB7hNXOSj@>NLln4Z0
-!s100 ddcWR5_X8=]@g5G:LijkM0
+l30
+L8 45
+VMM?[=_Sc0Lgn809Zl2SOi3
+!s100 CCJi_ZDmXKg=C^GbY5hDe0
 R7
 31
 R8
 !i10b 1
 R9
 R17
-Z18 !s107 /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_ram.vhd|
+Z18 !s107 /home/matt/Documents/TN/CSsP/TPs/tp_rom/tb_pc.vhd|
 !i113 1
 R12
 R13
