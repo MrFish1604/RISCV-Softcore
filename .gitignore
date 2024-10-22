@@ -1,9 +1,7 @@
-e~register_bench.o
-e~tb_rb.o
-register_bench
-register_bench.o
-tb_rb
-tb_rb.o
-wave.ghw
-work-obj93.cf
+*
+!*.*
 
+*.o
+*.ghw
+*.cf
+*.ghd
