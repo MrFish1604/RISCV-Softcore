@@ -19,6 +19,7 @@ re: clean all
 	$(CC) -r $* $(RFLAGS) --wave=$@
 
 %.o: %.vhd
+	@rm -rfv *$*.o
 	$(CC) -a $(LFLAGS) $<
 
 %.ghd: %.o
