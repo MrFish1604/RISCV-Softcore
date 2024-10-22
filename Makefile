@@ -9,6 +9,7 @@ unit=main
 WFLAGS=> /dev/null 2>&1 &
 
 .PHONY: clean all sim remake
+.PRECIOUS: %.o %.ghd
 
 all: $(VHD_FILES:.vhd=.ghd)
 
