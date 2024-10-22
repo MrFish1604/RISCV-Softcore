@@ -8,12 +8,12 @@ VHD_FILES!=ls *.vhd
 unit=main
 WFLAGS=> /dev/null 2>&1 &
 
-.PHONY: clean all sim remake
+.PHONY: clean all sim re %.rm
 .PRECIOUS: %.o %.ghd
 
 all: $(VHD_FILES:.vhd=.ghd)
 
-remake: clean all
+re: clean all
 
 %.ghw: %.ghd
 	$(CC) -r $* $(RFLAGS) --wave=$@
@@ -25,9 +25,12 @@ remake: clean all
 	$(CC) -e $(LFLAGS) -o $* $*
 	touch $@
 
-sim: $(unit).ghw
+sim: $(unit).ghw.rm $(unit).ghw
 	@echo "Opening waveform" $<
 	@$(WAVIEW) $(unit).ghw $(WFLAGS)
+
+%.rm:
+	@rm -rfv $*
 
 clean:
 	@rm -rfv *.o *.ghw *.cf *.ghd
