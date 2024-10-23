@@ -39,5 +39,7 @@ begin
         else opA xor opB when aluOp3="100" -- xor
         else std_logic_vector(shift_right(unsigned(opA), to_integer(unsigned(opB((ADDR_SIZE-1) downto 0))))) when aluOp="0101" -- srl
         else std_logic_vector(shift_right(signed(opA), to_integer(unsigned(opB((ADDR_SIZE-1) downto 0))))) when aluOp="1101" -- sra
+        else opA or opB when aluOp3="110" -- or
+        else opA and opB when aluOp3="111" -- and
         else std_logic_vector(to_unsigned(0, N)); -- undefined
 end rtl;
