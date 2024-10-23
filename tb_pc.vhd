@@ -3,14 +3,18 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity tb_pc is
+	generic
+	(
+		N: natural := 32
+	);
 end entity tb_pc;
 
 architecture behav of tb_pc is
 
-	component program_counter
+	component program_counter_auto
 	generic 
 	(
-		N : natural := 3
+		N : natural := N
 	);
 	
 	port
@@ -23,16 +27,16 @@ architecture behav of tb_pc is
 	end component;
 	
 	signal clk_t		: std_logic := '0';
-	signal data_in_t	: std_logic_vector((3-1) downto 0);
-	signal data_out_t	: std_logic_vector((3-1) downto 0);
+	signal data_in_t	: std_logic_vector((N-1) downto 0);
+	signal data_out_t	: std_logic_vector((N-1) downto 0);
 	signal we_t : std_logic := '1';
 
 begin
 
-	pc: program_counter
+	pc: program_counter_auto
 	generic map
 	(
-		N => 3
+		N => N
 	)
 	
 	port map
@@ -46,7 +50,7 @@ begin
 	we_t <= '1', '0' after 6 ns, '1' after 30 ns;
 	clk_t <= not clk_t after 5 ns;
 	
-	data_in_t <= "101", "010" after 10 ns;
+	data_in_t <= std_logic_vector(to_unsigned(3, N)), std_logic_vector(to_unsigned(2, N)) after 10 ns;
 	
 
 end behav;
