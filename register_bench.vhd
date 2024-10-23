@@ -36,8 +36,8 @@ architecture rtl of register_bench is
 	begin 
 		tmp(0) := std_logic_vector(to_unsigned(0, DATA_WIDTH));
 		for addr_pos in 1 to 2**ADDR_WIDTH - 1 loop 
-			-- Initialize each address with the 31 - address itself
-			tmp(addr_pos) := std_logic_vector(to_unsigned(31 - addr_pos, DATA_WIDTH));
+			-- Initialize each address with the address itself
+			tmp(addr_pos) := std_logic_vector(to_unsigned(addr_pos, DATA_WIDTH));
 		end loop;
 		return tmp;
 	end init_rb;	 

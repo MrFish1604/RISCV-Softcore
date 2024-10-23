@@ -2,18 +2,21 @@ CC=ghdl
 WORKDIR=.
 LFLAGS=--workdir=$(WORKDIR)
 TF=1000ns
-RFLAGS=--stop-time=$(TF)
+RFLAGS=--stop-time=$(TF) --stop-delta=50000
 WAVIEW=gtkwave
 VHD_FILES!=ls *.vhd
 unit=main
 WFLAGS=> /dev/null 2>&1 &
 
+.SUFFIXES: # Erase implicit rules
 .PHONY: clean all sim re %.rm
 .PRECIOUS: %.o %.ghd
 
 all: $(VHD_FILES:.vhd=.ghd)
 
 re: clean all
+
+CPU: program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd CPU.ghd
 
 %.ghw: %.ghd
 	$(CC) -r $* $(RFLAGS) --wave=$@
