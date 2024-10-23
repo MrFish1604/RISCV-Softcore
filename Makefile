@@ -35,4 +35,4 @@ sim: $(unit).ghw.rm $(unit).ghw
 
 clean:
 	@rm -rfv *.o *.ghw *.cf *.ghd
-	@ls | grep -v "\." | grep -v "Makefile" | xargs rm -rfv
+	@ls | grep -v "\." | grep -v "Makefile" | grep -v "docs" | xargs rm -rfv
