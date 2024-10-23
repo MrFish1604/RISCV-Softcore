@@ -37,5 +37,7 @@ begin
         else VOID31 & bool2logic(signed(opA) < signed(opB)) when aluOp3="010" -- slt
         else VOID31 & bool2logic(unsigned(opA) < unsigned(opB)) when aluOp3="011" -- sltu
         else opA xor opB when aluOp3="100" -- xor
+        else std_logic_vector(shift_right(unsigned(opA), to_integer(unsigned(opB((ADDR_SIZE-1) downto 0))))) when aluOp="0101" -- srl
+        else std_logic_vector(shift_right(signed(opA), to_integer(unsigned(opB((ADDR_SIZE-1) downto 0))))) when aluOp="1101" -- sra
         else std_logic_vector(to_unsigned(0, N)); -- undefined
 end rtl;
