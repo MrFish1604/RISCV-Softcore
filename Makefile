@@ -16,7 +16,7 @@ all: $(VHD_FILES:.vhd=.ghd)
 
 re: clean all
 
-CPU: program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd CPU.ghd
+cpu: program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd cpu.ghd
 
 %.ghw: %.ghd
 	$(CC) -r $* $(RFLAGS) --wave=$@
