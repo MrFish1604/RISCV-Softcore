@@ -51,7 +51,7 @@ begin
     process begin
     for i in 0 to 2**N_OP_t-1 loop
         opA_t <= std_logic_vector(to_signed(incr, N_t));
-        opB_t <= std_logic_vector(to_signed(incr+1, N_t));
+        opB_t <= std_logic_vector(to_signed(incr-9, N_t));
         aluOp_t <= std_logic_vector(to_unsigned(i, N_OP_t));
         incr <= incr + 1;
         wait for 10 ns;

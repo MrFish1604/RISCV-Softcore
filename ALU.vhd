@@ -31,9 +31,11 @@ architecture rtl of ALU is
         end if;
     end;
 begin
-    res <= std_logic_vector(signed(opA) + signed(opB)) when aluOp="0000"
-        else std_logic_vector(signed(opA) - signed(opB)) when aluOp="1000"
-        else std_logic_vector(shift_left(unsigned(opA), to_integer(unsigned(opB((ADDR_SIZE-1) downto 0))))) when aluOp3="001"
-        else VOID31 & bool2logic(signed(opA) < signed(opB)) when aluOp3="010"
-        else std_logic_vector(to_unsigned(0, N));
+    res <= std_logic_vector(signed(opA) + signed(opB)) when aluOp="0000" -- add
+        else std_logic_vector(signed(opA) - signed(opB)) when aluOp="1000" -- sub
+        else std_logic_vector(shift_left(unsigned(opA), to_integer(unsigned(opB((ADDR_SIZE-1) downto 0))))) when aluOp3="001" -- sll
+        else VOID31 & bool2logic(signed(opA) < signed(opB)) when aluOp3="010" -- slt
+        else VOID31 & bool2logic(unsigned(opA) < unsigned(opB)) when aluOp3="011" -- sltu
+        else opA xor opB when aluOp3="100" -- xor
+        else std_logic_vector(to_unsigned(0, N)); -- undefined
 end rtl;
