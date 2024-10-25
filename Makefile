@@ -1,6 +1,6 @@
 CC=ghdl
 WORKDIR=.
-LFLAGS=--workdir=$(WORKDIR)
+LFLAGS=--workdir=$(WORKDIR) --std=08
 TF=1000ns
 RFLAGS=--stop-time=$(TF) --stop-delta=50000
 WAVIEW=gtkwave
