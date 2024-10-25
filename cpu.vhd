@@ -89,23 +89,39 @@ architecture rtl of CPU is
     end component;
 
     component register_bench
-    generic 
-	(
-		DATA_WIDTH : natural := N;
-		ADDR_WIDTH : natural := N_BIT_ADDR
-	);
+        generic 
+	    (
+	    	DATA_WIDTH : natural := N;
+	    	ADDR_WIDTH : natural := N_BIT_ADDR
+	    );
+	    port 
+	    (
+	    	clk		: in std_logic;
+	    	RW	: in natural range 0 to (2**ADDR_WIDTH - 1);
+	    	RA	: in natural range 0 to (2**ADDR_WIDTH - 1);
+	    	RB	: in natural range 0 to (2**ADDR_WIDTH - 1);
+	    	BusA	: out std_logic_vector((DATA_WIDTH-1) downto 0);
+	    	BusB	: out std_logic_vector((DATA_WIDTH-1) downto 0);
+	    	BusW	: in std_logic_vector((DATA_WIDTH-1) downto 0);
+	    	we		: in std_logic
+	    );
+    end component;
 
-	port 
-	(
-		clk		: in std_logic;
-		RW	: in natural range 0 to (2**ADDR_WIDTH - 1);
-		RA	: in natural range 0 to (2**ADDR_WIDTH - 1);
-		RB	: in natural range 0 to (2**ADDR_WIDTH - 1);
-		BusA	: out std_logic_vector((DATA_WIDTH-1) downto 0);
-		BusB	: out std_logic_vector((DATA_WIDTH-1) downto 0);
-		BusW	: in std_logic_vector((DATA_WIDTH-1) downto 0);
-		we		: in std_logic
-	);
+    component ALU
+        generic
+        (
+            N: natural := N;
+            ADDR_SIZE: natural := N_BIT_ADDR;
+            N_OP: natural := N_OP;
+            VOID31: std_logic_vector((N-2) downto 0) := (others => '0')
+        );
+        port
+        (
+            opA: in std_logic_vector((N-1) downto 0);
+            opB: in std_logic_vector((N-1) downto 0);
+            aluOp: in std_logic_vector((N_OP-1) downto 0);
+            res: out std_logic_vector((N-1) downto 0)
+        );
     end component;
 begin
     clk <= not clk after 10 ns;
@@ -170,5 +186,20 @@ begin
             BusB => BusB,
             BusW => BusW,
             we => we
+        );
+    alu1: ALU
+        generic map
+        (
+            N => N,
+            ADDR_SIZE => N_BIT_ADDR,
+            N_OP => N_OP,
+            VOID31 => (others => '0')
+        )
+        port map
+        (
+            opA => BusA,
+            opB => BusB,
+            aluOp => aluOp,
+            res => BusW
         );
 end rtl;

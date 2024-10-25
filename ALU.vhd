@@ -8,7 +8,7 @@ entity ALU is
         N: natural := 32;
         ADDR_SIZE: natural := 5;
         N_OP: natural := 4;
-        VOID31: std_logic_vector((30) downto 0) := std_logic_vector(to_unsigned(0, 31))
+        VOID31: std_logic_vector((30) downto 0) := (others => '0')
     );
     port
     (
