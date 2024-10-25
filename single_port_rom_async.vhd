@@ -30,11 +30,22 @@ architecture rtl of single_port_rom_async is
 	function init_rom
 		return memory_t is 
 		variable tmp : memory_t := (others => (others => '0'));
-	begin 
-		for addr_pos in 0 to 2**ADDR_WIDTH - 1 loop 
+	begin
+		tmp := (others => (
+			6 downto 0 => "0110011",
+			19 downto 15 => "00010",
+			24 downto 20 => "00011",
+			11 downto 7 => "11111",
+			others => '0'
+		));
+		for addr_pos in 0 to 7 loop 
 			-- Initialize each address with the address itself
-			tmp(addr_pos) := not std_logic_vector(to_unsigned(addr_pos, DATA_WIDTH));
+			tmp(addr_pos)(14 downto 12) := std_logic_vector(to_unsigned(addr_pos, 3));
 		end loop;
+		tmp(8)(14 downto 12) := "000";
+		tmp(8)(30) := '1';
+		tmp(9)(14 downto 12) := "101";
+		tmp(9)(30) := '1';
 		return tmp;
 	end init_rom;	 
 
