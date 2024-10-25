@@ -8,6 +8,8 @@ entity CPU is
         N: natural := 32;
         N_OP: natural := 4;
         N_ADDR_IMEM: natural := 8;
+        MEM_DEPTH: natural := 2**N_ADDR_IMEM;
+        MEM_FILE: string := "imem.txt";
         N_BIT_ADDR: natural := 5
     );
     port
@@ -78,16 +80,18 @@ architecture rtl of CPU is
 	    );
     end component;
 
-    component single_port_rom_async
+    component imem
         generic 
 	    (
-	    	DATA_WIDTH : natural := N;
-	    	ADDR_WIDTH : natural := N_ADDR_IMEM
+	    	MEM_WIDTH: natural := N;
+            ADDR_WIDTH: natural := N_ADDR_IMEM;
+            MEM_DEPTH: natural := MEM_DEPTH;
+            MEM_FILE: string := MEM_FILE
 	    );
 	    port 
 	    (
-	    	addr	: in natural range 0 to 2**ADDR_WIDTH - 1;
-	    	q		: out std_logic_vector((DATA_WIDTH -1) downto 0)
+	    	addr	: in natural range 0 to MEM_DEPTH - 1;
+	    	q		: out std_logic_vector((MEM_WIDTH - 1) downto 0)
 	    );
     end component;
 
@@ -160,11 +164,13 @@ begin
             we => '1'
         );
     
-    imem: single_port_rom_async
+    imem1: imem
         generic map
         (
-            DATA_WIDTH => N,
-            ADDR_WIDTH => N_ADDR_IMEM
+            MEM_WIDTH => N,
+            ADDR_WIDTH => N_ADDR_IMEM,
+            MEM_DEPTH => MEM_DEPTH,
+            MEM_FILE => MEM_FILE
         )
         port map
         (
