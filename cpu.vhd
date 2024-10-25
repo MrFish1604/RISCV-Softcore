@@ -10,10 +10,13 @@ entity CPU is
         N_ADDR_IMEM: natural := 8;
         N_BIT_ADDR: natural := 5
     );
+    port
+    (
+        clk: in std_logic
+    );
 end CPU;
 
 architecture rtl of CPU is
-    signal clk: std_logic := '0';
     signal instr: std_logic_vector((N-1) downto 0);
     signal load: std_logic;
     signal we: std_logic;
@@ -124,7 +127,6 @@ architecture rtl of CPU is
         );
     end component;
 begin
-    clk <= not clk after 10 ns;
 
     -- Debug
     instr_rs1 <= logic2integer(rs1);
