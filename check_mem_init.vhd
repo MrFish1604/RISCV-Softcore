@@ -6,39 +6,45 @@ use std.textio.all;
 entity check_mem_init is
     generic
     (
-        DATA_WIDTH : natural := 32;
-        ADDR_WIDTH : natural := 8
+        MEM_WIDTH: natural := 32;
+        ADDR_WIDTH: natural := 8;
+        MEM_DEPTH: natural := 2**ADDR_WIDTH;
+        MEM_FILE: string := "imem.txt"
     );
 end entity check_mem_init;
 
 architecture test of check_mem_init is
-    component single_port_rom_async
-    generic 
-	(
-		DATA_WIDTH : natural := DATA_WIDTH;
-		ADDR_WIDTH : natural := ADDR_WIDTH
-	);
-
-	port 
-	(
-		addr	: in natural range 0 to 2**ADDR_WIDTH - 1;
-		q		: out std_logic_vector((DATA_WIDTH -1) downto 0)
-	);
+    component imem
+        generic
+        (
+            MEM_WIDTH: natural := MEM_WIDTH;
+            ADDR_WIDTH: natural := ADDR_WIDTH;
+            MEM_DEPTH: natural := MEM_DEPTH;
+            MEM_FILE: string := MEM_FILE
+        );
+        port
+        (
+            addr: in natural range 0 to MEM_DEPTH - 1 :=0 ;
+            q: out std_logic_vector((MEM_WIDTH-1) downto 0)
+        );
     end component;
-    signal data: std_logic_vector((DATA_WIDTH -1) downto 0);
-    signal addr: natural range 0 to 2**ADDR_WIDTH - 1;
+            
+    signal data: std_logic_vector((MEM_WIDTH -1) downto 0);
+    signal addr: natural range 0 to MEM_DEPTH - 1;
 begin
-    rom_1: single_port_rom_async
-    generic map
-    (
-        DATA_WIDTH => DATA_WIDTH,
-        ADDR_WIDTH => ADDR_WIDTH
-    )
-    port map
-    (
-        addr    => addr,
-        q => data
-    );
+    rom_1: imem
+        generic map
+        (
+            MEM_WIDTH => MEM_WIDTH,
+            ADDR_WIDTH => ADDR_WIDTH,
+            MEM_DEPTH => MEM_DEPTH,
+            MEM_FILE => MEM_FILE
+        )
+        port map
+        (
+            addr => addr,
+            q => data
+        );
 
     process 
         variable l: line;
