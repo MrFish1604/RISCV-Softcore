@@ -7,7 +7,8 @@ entity CPU is
     (
         N: natural := 32;
         N_OP: natural := 4;
-        N_ADDR: natural := 8
+        N_ADDR_IMEM: natural := 8;
+        N_BIT_ADDR: natural := 5
     );
 end CPU;
 
@@ -20,11 +21,29 @@ architecture rtl of CPU is
 
     signal pc_out: std_logic_vector((N-1) downto 0);
 
-    signal funct3: std_logic_vector(2 downto 0);
+    signal BusA: std_logic_vector((N-1) downto 0);
+    signal BusB: std_logic_vector((N-1) downto 0);
+    signal BusW: std_logic_vector((N-1) downto 0) := (others => '0');
 
-    function conv_integer(v: std_logic_vector) return integer is
+    alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
+    alias rs2 : std_logic_vector(4 downto 0) is instr(24 downto 20);
+    alias rs1 : std_logic_vector(4 downto 0) is instr(19 downto 15);
+    alias funct3: std_logic_vector(2 downto 0) is instr(14 downto 12);
+    alias rd : std_logic_vector(4 downto 0) is instr(11 downto 7);
+    alias opcode : std_logic_vector(6 downto 0) is instr(6 downto 0);
+
+    -- Debug
+    signal instr_rs1: natural range 0 to (2**N_BIT_ADDR - 1);
+    signal instr_rs2: natural range 0 to (2**N_BIT_ADDR - 1);
+    signal instr_rd: natural range 0 to (2**N_BIT_ADDR - 1);
+
+    function logic2integer(v: std_logic_vector) return integer is
     begin
-        return to_integer(unsigned(v));
+        if Is_X(v) then -- to_integer does it by itself but throws a waring
+            return 0;
+        else
+            return to_integer(unsigned(v));
+        end if;
     end function;
 
     component controleur
@@ -60,7 +79,7 @@ architecture rtl of CPU is
         generic 
 	    (
 	    	DATA_WIDTH : natural := N;
-	    	ADDR_WIDTH : natural := N_ADDR
+	    	ADDR_WIDTH : natural := N_ADDR_IMEM
 	    );
 	    port 
 	    (
@@ -68,9 +87,33 @@ architecture rtl of CPU is
 	    	q		: out std_logic_vector((DATA_WIDTH -1) downto 0)
 	    );
     end component;
+
+    component register_bench
+    generic 
+	(
+		DATA_WIDTH : natural := N;
+		ADDR_WIDTH : natural := N_BIT_ADDR
+	);
+
+	port 
+	(
+		clk		: in std_logic;
+		RW	: in natural range 0 to (2**ADDR_WIDTH - 1);
+		RA	: in natural range 0 to (2**ADDR_WIDTH - 1);
+		RB	: in natural range 0 to (2**ADDR_WIDTH - 1);
+		BusA	: out std_logic_vector((DATA_WIDTH-1) downto 0);
+		BusB	: out std_logic_vector((DATA_WIDTH-1) downto 0);
+		BusW	: in std_logic_vector((DATA_WIDTH-1) downto 0);
+		we		: in std_logic
+	);
+    end component;
 begin
     clk <= not clk after 10 ns;
-    funct3 <= instr(14 downto 12);
+
+    -- Debug
+    instr_rs1 <= logic2integer(rs1);
+    instr_rs2 <= logic2integer(rs2);
+    instr_rd <= logic2integer(rd);
 
     ctrl: controleur
         generic map
@@ -103,11 +146,29 @@ begin
         generic map
         (
             DATA_WIDTH => N,
-            ADDR_WIDTH => N_ADDR
+            ADDR_WIDTH => N_ADDR_IMEM
         )
         port map
         (
-            addr => conv_integer(pc_out),
+            addr => logic2integer(pc_out),
             q => instr
+        );
+    
+    reg: register_bench
+        generic map
+        (
+            DATA_WIDTH => N,
+            ADDR_WIDTH => N_BIT_ADDR
+        )
+        port map
+        (
+            clk => clk,
+            RW => logic2integer(rd),
+            RA => logic2integer(rs1),
+            RB => logic2integer(rs2),
+            BusA => BusA,
+            BusB => BusB,
+            BusW => BusW,
+            we => we
         );
 end rtl;

@@ -48,8 +48,8 @@ begin
 
 --	regs(0) <= std_logic_vector(to_unsigned(0, DATA_WIDTH));
 
-	BusA <= regs(RA);
-	BusB <= regs(RB);
+	BusA <= regs(RA) when RA < 2**ADDR_WIDTH else (others => '0');
+	BusB <= regs(RB) when RA < 2**ADDR_WIDTH else (others => '0');
 	
 	process(clk) begin
 	if(rising_edge(clk)) then
