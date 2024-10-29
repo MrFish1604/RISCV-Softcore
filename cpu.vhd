@@ -9,7 +9,8 @@ entity CPU is
         N_OP: natural := 4;
         N_ADDR_IMEM: natural := 8;
         MEM_DEPTH: natural := 2**N_ADDR_IMEM;
-        MEM_FILE: string := "imem.txt";
+        -- MEM_FILE: string := "imem.txt";
+        MEM_FILE: string := "prgms/test_IR.hex";
         N_BIT_ADDR: natural := 5;
         IMM_SIZE: natural := 12;
         SHAMT_SIZE: natural := 5

@@ -55,7 +55,7 @@ architecture rtl of IMEM is
             elsif l'length = 8 then
                 read(l, s);
                 mem(a) := hex2slv(s);
-            else
+            elsif l'length /= 0 then
                 report "Can't load instruction at line " & integer'image(a) & " from file '" & filename & "'. Line length is " & integer'image(l'length) & " instead of 32." severity ERROR;
             end if;
             a := a + 1;
