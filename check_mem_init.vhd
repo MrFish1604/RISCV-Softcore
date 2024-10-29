@@ -28,7 +28,7 @@ architecture test of check_mem_init is
             q: out std_logic_vector((MEM_WIDTH-1) downto 0)
         );
     end component;
-            
+
     signal data: std_logic_vector((MEM_WIDTH -1) downto 0);
     signal addr: natural range 0 to MEM_DEPTH - 1;
 begin
@@ -46,11 +46,11 @@ begin
             q => data
         );
 
-    process 
+    process
         variable l: line;
     begin
-        for i in 0 to 15 loop --(2**ADDR_WIDTH -1) loop
-            wait for 1 ns;
+        for i in 1 to 42 loop --(2**ADDR_WIDTH -1) loop
+            wait for 10 ns;
             addr <= i;
             write(l, String'("Address "));
             if addr < 10 then
