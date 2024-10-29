@@ -33,14 +33,14 @@ architecture behav of tb_immext is
     end component;
     signal instr_set: instr_set_t := (
         "11101100000110011111000010101010", -- -319
-        "10111001100001000101100101010000", -- -1128
-        "11001001100010111101110101011010", -- -872
-        "10001010010000000000111010100000", -- -1884
-        "10100111011010111101010000001000", -- -1418
-        "00111111000100101001001100011011", -- 1009
-        "11011000011011000100101110111101", -- -634
+        "10111001100001000111100101010000", -- -1128
+        "11001001100010111111110101011010", -- -872
+        "10001010010000000011111010100000", -- -1884
+        "10100111011010111111010000001000", -- -1418
+        "00111111000100101011001100011011", -- 1009
+        "11011000011011000111101110111101", -- -634
         "10010010011000010000000010110001", -- -1754
-        "00101010111111000110111111100110",-- 687
+        "00101010111111000111111111100110",-- 687
         "01000011100101110011001001110100" -- 1081
     );
     signal instr: std_logic_vector((N-1) downto 0); --:= instr_set(0);
@@ -74,6 +74,9 @@ begin
         for i in 0 to 19 loop
             instType <= "0" when i < 10 else "1";
             instr <= instr_set(i mod 10);
+            if i >= 10 then
+                instr(13 downto 12) <= "01";
+            end if;
             wait for 10 ns;
             ok <= to_integer(signed(ext)) = expected(i);
             wait for 10 ns;
@@ -82,7 +85,7 @@ begin
             write(l, to_string(ext) & " ok is " & to_string(ok));
             writeline(output, l);
             if not ok then
-                report "Test failed on the " & to_string(i) & "th instruction." severity ERROR;
+                report "Test failed on the " & to_string(i+1) & "th instruction." severity ERROR;
                 failed_test <= failed_test + 1;
             end if;
             write(l, String'(" "));

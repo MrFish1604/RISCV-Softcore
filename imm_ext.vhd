@@ -18,11 +18,12 @@ entity imm_ext is
     );
     alias imm: std_logic_vector((IMM_SIZE-1) downto 0) is instr(31 downto 20);
     alias shamt: std_logic_vector((SHAMT_SIZE-1) downto 0) is instr(24 downto 20);
+    alias funct2: std_logic_vector(1 downto 0) is instr(13 downto 12);
 end imm_ext;
 
 architecture rtl of imm_ext is
 begin
-    immExt <= std_logic_vector(resize(signed(imm), N)) when instType="0"
-        else std_logic_vector(resize(unsigned(shamt), N));
+    immExt <= std_logic_vector(resize(unsigned(shamt), N)) when funct2="01"
+        else std_logic_vector(resize(signed(imm), N));
 
 end rtl;
