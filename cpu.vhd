@@ -10,7 +10,9 @@ entity CPU is
         N_ADDR_IMEM: natural := 8;
         MEM_DEPTH: natural := 2**N_ADDR_IMEM;
         MEM_FILE: string := "imem.txt";
-        N_BIT_ADDR: natural := 5
+        N_BIT_ADDR: natural := 5;
+        IMM_SIZE: natural := 12;
+        SHAMT_SIZE: natural := 5
     );
     port
     (
@@ -19,6 +21,7 @@ entity CPU is
 end CPU;
 
 architecture rtl of CPU is
+    subtype word_t is std_logic_vector((N-1) downto 0);
     signal instr: std_logic_vector((N-1) downto 0);
     signal load: std_logic;
     signal we: std_logic;
@@ -29,6 +32,10 @@ architecture rtl of CPU is
     signal BusA: std_logic_vector((N-1) downto 0);
     signal BusB: std_logic_vector((N-1) downto 0);
     signal BusW: std_logic_vector((N-1) downto 0) := (others => '0');
+
+    signal RI_sel: std_logic;
+    signal immExt: std_logic_vector((N-1) downto 0);
+    signal mux_out: word_t;
 
     alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
     alias rs2 : std_logic_vector(4 downto 0) is instr(24 downto 20);
@@ -62,16 +69,17 @@ architecture rtl of CPU is
             instr: in std_logic_vector((N-1) downto 0);
             load: out std_logic;
             we: out std_logic;
-            aluOp: out std_logic_vector((N_OP-1) downto 0)
+            aluOp: out std_logic_vector((N_OP-1) downto 0);
+            RI_sel: out std_logic
         );
     end component;
 
     component program_counter_auto
-        generic 
+        generic
 	    (
 	    	N: natural := N
 	    );
-	    port 
+	    port
 	    (
 	    	clk		: in std_logic;
 	    	data_in	: in std_logic_vector((N-1) downto 0);
@@ -81,14 +89,14 @@ architecture rtl of CPU is
     end component;
 
     component imem
-        generic 
+        generic
 	    (
 	    	MEM_WIDTH: natural := N;
             ADDR_WIDTH: natural := N_ADDR_IMEM;
             MEM_DEPTH: natural := MEM_DEPTH;
             MEM_FILE: string := MEM_FILE
 	    );
-	    port 
+	    port
 	    (
 	    	addr	: in natural range 0 to MEM_DEPTH - 1;
 	    	q		: out std_logic_vector((MEM_WIDTH - 1) downto 0)
@@ -96,12 +104,12 @@ architecture rtl of CPU is
     end component;
 
     component register_bench
-        generic 
+        generic
 	    (
 	    	DATA_WIDTH : natural := N;
 	    	ADDR_WIDTH : natural := N_BIT_ADDR
 	    );
-	    port 
+	    port
 	    (
 	    	clk		: in std_logic;
 	    	RW	: in natural range 0 to (2**ADDR_WIDTH - 1);
@@ -112,6 +120,31 @@ architecture rtl of CPU is
 	    	BusW	: in std_logic_vector((DATA_WIDTH-1) downto 0);
 	    	we		: in std_logic
 	    );
+    end component;
+
+    component Imm_ext
+        generic(
+            N: natural := N;
+            IMM_SIZE: natural := IMM_SIZE;
+            SHAMT_SIZE: natural := SHAMT_SIZE;
+            TYPE_SIZE: natural := 1
+        );
+        port(
+            instr: in std_logic_vector((N-1) downto 0);
+            instType: in std_logic_vector((TYPE_SIZE-1) downto 0);
+            immExt: out std_logic_vector((N-1) downto 0)
+        );
+    end component;
+
+    component mux21
+        generic(
+            N: natural := N
+        );
+        port(
+            a, b: in std_logic_vector((N-1) downto 0);
+            output: out std_logic_vector((N-1) downto 0);
+            sel: in std_logic
+        );
     end component;
 
     component ALU
@@ -148,9 +181,10 @@ begin
             instr => instr,
             load => load,
             we => we,
-            aluOp => aluOp
+            aluOp => aluOp,
+            RI_sel => RI_sel
         );
-    
+
     pc: program_counter_auto
         generic map
         (
@@ -163,7 +197,7 @@ begin
             data_out => pc_out,
             we => '1'
         );
-    
+
     imem1: imem
         generic map
         (
@@ -177,7 +211,7 @@ begin
             addr => logic2integer(pc_out),
             q => instr
         );
-    
+
     reg: register_bench
         generic map
         (
@@ -195,6 +229,35 @@ begin
             BusW => BusW,
             we => we
         );
+
+    imm_ext_u: Imm_ext
+        generic map
+        (
+            N => N,
+            IMM_SIZE => IMM_SIZE,
+            SHAMT_SIZE => SHAMT_SIZE,
+            TYPE_SIZE => 1
+        )
+        port map
+        (
+            instr => instr,
+            instType => "0",
+            immExt => immExt
+        );
+
+    mux: mux21
+        generic map
+        (
+            N => N
+        )
+        port map
+        (
+            a => BusB,
+            b => immExt,
+            output => mux_out,
+            sel => RI_sel
+        );
+
     alu1: ALU
         generic map
         (
@@ -206,7 +269,7 @@ begin
         port map
         (
             opA => BusA,
-            opB => BusB,
+            opB => mux_out,
             aluOp => aluOp,
             res => BusW
         );
