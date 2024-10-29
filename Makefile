@@ -16,7 +16,10 @@ all: $(VHD_FILES:.vhd=.ghd)
 
 re: clean all
 
-cpu: program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd imem.ghd imm_ext.ghd mux21.ghd cpu.ghd
+cpu: imem.txt program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd imem.ghd imm_ext.ghd mux21.ghd cpu.ghd
+	@rm -rfv tb_cpu.ghd
+
+imem.o: imem.txt
 
 %.ghw: %.ghd
 	$(CC) -r $* $(RFLAGS) --wave=$@
@@ -28,6 +31,7 @@ cpu: program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd regi
 %.ghd: %.o
 	$(CC) -e $(LFLAGS) -o $* $*
 	touch $@
+	@rm -rfv cpu.ghd
 
 sim: $(unit).ghw.rm $(unit).ghw
 	@echo "Opening waveform" $<
