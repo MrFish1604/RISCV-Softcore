@@ -1,10 +1,10 @@
 *
 !*.*
 !docs
+!Makefile
 
 *.o
 *.ghw
 *.cf
 *.ghd
 *.txt
-
