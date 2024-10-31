@@ -93,15 +93,15 @@ architecture rtl of CPU is
     component imem
         generic
 	    (
-	    	MEM_WIDTH: natural := N;
+	    -- 	MEM_WIDTH: natural := N;
             ADDR_WIDTH: natural := N_ADDR_IMEM;
-            MEM_DEPTH: natural := MEM_DEPTH;
+     --        MEM_DEPTH: natural := MEM_DEPTH;
             MEM_FILE: string := MEM_FILE
 	    );
 	    port
 	    (
 	    	addr	: in natural range 0 to MEM_DEPTH - 1;
-	    	q		: out std_logic_vector((MEM_WIDTH - 1) downto 0)
+	    	q		: out std_logic_vector((N - 1) downto 0)
 	    );
     end component;
 
@@ -201,13 +201,13 @@ begin
         );
 
     imem1: imem
-        generic map
-        (
-            MEM_WIDTH => N,
-            ADDR_WIDTH => N_ADDR_IMEM,
-            MEM_DEPTH => MEM_DEPTH,
-            MEM_FILE => MEM_FILE
-        )
+        -- generic map
+        -- (
+        --     MEM_WIDTH => N,
+        --     ADDR_WIDTH => N_ADDR_IMEM,
+        --     MEM_DEPTH => MEM_DEPTH,
+        --     MEM_FILE => MEM_FILE
+        -- )
         port map
         (
             addr => logic2integer(pc_out),

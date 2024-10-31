@@ -7,7 +7,7 @@ entity tb_cpu is
     (
         N: natural := 32;
         N_OP: natural := 4;
-        N_ADDR_IMEM: natural := 9;
+        N_ADDR_IMEM: natural := 12;
         N_BIT_ADDR: natural := 5
     );
 end tb_cpu;
