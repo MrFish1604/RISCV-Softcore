@@ -23,19 +23,20 @@ end CPU;
 
 architecture rtl of CPU is
     subtype word_t is std_logic_vector((N-1) downto 0);
-    signal instr: std_logic_vector((N-1) downto 0);
+
+    signal instr: word_t;
     signal load: std_logic;
     signal we: std_logic;
     signal aluOp: std_logic_vector((N_OP-1) downto 0);
 
-    signal pc_out: std_logic_vector((N-1) downto 0);
+    signal pc_out: word_t;
 
-    signal BusA: std_logic_vector((N-1) downto 0);
-    signal BusB: std_logic_vector((N-1) downto 0);
-    signal BusW: std_logic_vector((N-1) downto 0) := (others => '0');
+    signal BusA: word_t;
+    signal BusB: word_t;
+    signal BusW: word_t := (others => '0');
 
     signal RI_sel: std_logic;
-    signal immExt: std_logic_vector((N-1) downto 0);
+    signal immExt: word_t;
     signal mux_out: word_t;
 
     alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
@@ -67,7 +68,7 @@ architecture rtl of CPU is
         );
         port
         (
-            instr: in std_logic_vector((N-1) downto 0);
+            instr: in word_t;
             load: out std_logic;
             we: out std_logic;
             aluOp: out std_logic_vector((N_OP-1) downto 0);
@@ -83,8 +84,8 @@ architecture rtl of CPU is
 	    port
 	    (
 	    	clk		: in std_logic;
-	    	data_in	: in std_logic_vector((N-1) downto 0);
-	    	data_out	: out std_logic_vector((N-1) downto 0);
+	    	data_in	: in word_t;
+	    	data_out	: out word_t;
 	    	we		: in std_logic
 	    );
     end component;
@@ -131,9 +132,9 @@ architecture rtl of CPU is
             TYPE_SIZE: natural := 1
         );
         port(
-            instr: in std_logic_vector((N-1) downto 0);
+            instr: in word_t;
             instType: in std_logic_vector((TYPE_SIZE-1) downto 0);
-            immExt: out std_logic_vector((N-1) downto 0)
+            immExt: out word_t
         );
     end component;
 
@@ -142,8 +143,8 @@ architecture rtl of CPU is
             N: natural := N
         );
         port(
-            a, b: in std_logic_vector((N-1) downto 0);
-            output: out std_logic_vector((N-1) downto 0);
+            a, b: in word_t;
+            output: out word_t;
             sel: in std_logic
         );
     end component;
@@ -158,10 +159,10 @@ architecture rtl of CPU is
         );
         port
         (
-            opA: in std_logic_vector((N-1) downto 0);
-            opB: in std_logic_vector((N-1) downto 0);
+            opA: in word_t;
+            opB: in word_t;
             aluOp: in std_logic_vector((N_OP-1) downto 0);
-            res: out std_logic_vector((N-1) downto 0)
+            res: out word_t
         );
     end component;
 begin
