@@ -10,10 +10,11 @@ entity CPU is
         N_ADDR_IMEM: natural := 8;
         MEM_DEPTH: natural := 2**N_ADDR_IMEM;
         -- MEM_FILE: string := "imem.txt";
-        MEM_FILE: string := "prgms/test_IR.hex";
+        MEM_FILE: string := "prgms/test_load.hex";
         N_BIT_ADDR: natural := 5;
         IMM_SIZE: natural := 12;
-        SHAMT_SIZE: natural := 5
+        SHAMT_SIZE: natural := 5;
+        DEBUG: boolean := true
     );
     port
     (
@@ -38,6 +39,10 @@ architecture rtl of CPU is
     signal RI_sel: std_logic;
     signal immExt: word_t;
     signal mux_out: word_t;
+
+    signal loadDMEM: std_logic;
+    signal dmem_out: word_t;
+    signal alu_out: word_t;
 
     alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
     alias rs2 : std_logic_vector(4 downto 0) is instr(24 downto 20);
@@ -72,7 +77,9 @@ architecture rtl of CPU is
             load: out std_logic;
             we: out std_logic;
             aluOp: out std_logic_vector((N_OP-1) downto 0);
-            RI_sel: out std_logic
+            RI_sel: out std_logic;
+            loadAcc: out std_logic;
+            wrMem: out std_logic
         );
     end component;
 
@@ -184,7 +191,9 @@ begin
             load => load,
             we => we,
             aluOp => aluOp,
-            RI_sel => RI_sel
+            RI_sel => RI_sel,
+            loadAcc => loadDMEM,
+            wrMem => open
         );
 
     pc: program_counter_auto
@@ -212,6 +221,30 @@ begin
         (
             addr => logic2integer(pc_out),
             q => instr
+        );
+
+    dmem: imem
+        generic map
+        (
+            MEM_FILE => "dmem.hex"
+        )
+        port map
+        (
+            addr => logic2integer(alu_out),
+            q => dmem_out
+        );
+
+    mux_DMEM: mux21
+        generic map
+        (
+            N => N
+        )
+        port map
+        (
+            a => alu_out,
+            b => dmem_out,
+            output => BusW,
+            sel => loadDMEM
         );
 
     reg: register_bench
@@ -273,6 +306,11 @@ begin
             opA => BusA,
             opB => mux_out,
             aluOp => aluOp,
-            res => BusW
+            res => alu_out
         );
+    DEBUG_CODE:if DEBUG generate
+        process(pc_out) begin
+            report "PC: " & integer'image(logic2integer(pc_out));
+        end process;
+    end generate DEBUG_CODE;
 end rtl;

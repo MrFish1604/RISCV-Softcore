@@ -14,7 +14,9 @@ entity controleur is
         load: out std_logic:='0';
         we: out std_logic:='1';
         aluOp: out std_logic_vector((N_OP-1) downto 0);
-        RI_sel: out std_logic
+        RI_sel: out std_logic;
+        loadAcc: out std_logic;
+        wrMem: out std_logic:='0'
     );
     alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
     alias rs2 : std_logic_vector(4 downto 0) is instr(24 downto 20);
@@ -25,10 +27,13 @@ entity controleur is
 
     constant R_TYPE: std_logic_vector(6 downto 0) := "0110011";
     constant I_TYPE: std_logic_vector(6 downto 0) := "0010011";
+    constant L_TYPE: std_logic_vector(6 downto 0) := "0000011";
 end controleur;
 
 architecture rtl of controleur is
 begin
-    RI_sel <= '0' when opcode=R_TYPE else '1' when opcode=I_TYPE else 'U';
-    aluOp <= funct7(5) & funct3 when opcode=R_TYPE else "0" & funct3;
+    -- RI_sel <= '0' when opcode=R_TYPE else '1' when opcode=I_TYPE or opcode=L_TYPE else 'U';
+    RI_sel <= not opcode(5);
+    aluOp <= "0000" when opcode=L_TYPE else funct7(5) & funct3 when opcode=R_TYPE else "0" & funct3;
+    loadAcc <= '1' when opcode=L_TYPE else '0';
 end rtl;

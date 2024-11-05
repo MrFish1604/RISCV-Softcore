@@ -84,6 +84,6 @@ architecture rtl of IMEM is
     signal rom: memory_t := load_mem_from_file(MEM_FILE);
 begin
     Q_GEN: for i in WORD_BYTES-1 downto 0 generate
-        q(MEM_WIDTH*(i+1)-1 downto i*MEM_WIDTH) <= rom(addr + WORD_BYTES - 1 - i);
+        q(MEM_WIDTH*(i+1)-1 downto i*MEM_WIDTH) <= rom(addr + WORD_BYTES - 1 - i) when addr + WORD_BYTES - 1 - i < MEM_DEPTH;
     end generate;
 end rtl;
