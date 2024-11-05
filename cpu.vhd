@@ -9,7 +9,6 @@ entity CPU is
         N_OP: natural := 4;
         N_ADDR_IMEM: natural := 8;
         MEM_DEPTH: natural := 2**N_ADDR_IMEM;
-        -- MEM_FILE: string := "imem.txt";
         MEM_FILE: string := "prgms/test_load.hex";
         N_BIT_ADDR: natural := 5;
         IMM_SIZE: natural := 12;
@@ -43,6 +42,7 @@ architecture rtl of CPU is
     signal loadDMEM: std_logic;
     signal dmem_out: word_t;
     signal alu_out: word_t;
+    signal lm_out: word_t;
 
     alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
     alias rs2 : std_logic_vector(4 downto 0) is instr(24 downto 20);
@@ -172,6 +172,18 @@ architecture rtl of CPU is
             res: out word_t
         );
     end component;
+
+    component lm
+        generic(
+            N: natural := N;
+            M: natural := 3
+        );
+        port(
+            input: in std_logic_vector((N-1) downto 0);
+            width: in std_logic_vector((M-1) downto 0);
+            lm_out: out std_logic_vector((N-1) downto 0)
+        );
+    end component;
 begin
 
     -- Debug
@@ -209,19 +221,11 @@ begin
             we => '1'
         );
 
-    imem1: imem
-        -- generic map
-        -- (
-        --     MEM_WIDTH => N,
-        --     ADDR_WIDTH => N_ADDR_IMEM,
-        --     MEM_DEPTH => MEM_DEPTH,
-        --     MEM_FILE => MEM_FILE
-        -- )
-        port map
-        (
-            addr => logic2integer(pc_out),
-            q => instr
-        );
+    imem1: imem port map
+    (
+        addr => logic2integer(pc_out),
+        q => instr
+    );
 
     dmem: imem
         generic map
@@ -234,6 +238,19 @@ begin
             q => dmem_out
         );
 
+    lm1: lm
+        generic map
+        (
+            N => N,
+            M => 3
+        )
+        port map
+        (
+            input => dmem_out,
+            width => funct3,
+            lm_out => lm_out
+        );
+
     mux_DMEM: mux21
         generic map
         (
@@ -242,7 +259,7 @@ begin
         port map
         (
             a => alu_out,
-            b => dmem_out,
+            b => lm_out,
             output => BusW,
             sel => loadDMEM
         );
