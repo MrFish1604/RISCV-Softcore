@@ -3,6 +3,7 @@
 !docs/
 !Makefile
 !prgms/
+!LICENSE
 
 *.o
 *.ghw
