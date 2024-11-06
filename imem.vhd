@@ -11,12 +11,15 @@ entity IMEM is
         WORD_BYTES: natural := 4;
         ADDR_WIDTH: natural := 8;
         MEM_DEPTH: natural := 2**ADDR_WIDTH;
-        MEM_FILE: string := "imem.txt"
+        MEM_FILE: string := "prgms/add.hex";
+        N: natural := MEM_WIDTH*WORD_BYTES
     );
     port
     (
         addr: in natural range 0 to MEM_DEPTH - 1 :=0 ;
-        q: out std_logic_vector((MEM_WIDTH*WORD_BYTES-1) downto 0)
+        q: out std_logic_vector((N-1) downto 0);
+        data: std_logic_vector((MEM_WIDTH-1) downto 0);
+        we: in std_logic := '0'
     );
 end IMEM;
 
@@ -86,4 +89,11 @@ begin
     Q_GEN: for i in WORD_BYTES-1 downto 0 generate
         q(MEM_WIDTH*(i+1)-1 downto i*MEM_WIDTH) <= rom(addr + WORD_BYTES - 1 - i) when addr + WORD_BYTES - 1 - i < MEM_DEPTH;
     end generate;
+
+    process(we) begin
+        case we is
+            when '1' => rom(addr) <= data;
+            when others => null;
+        end case;
+    end process;
 end rtl;
