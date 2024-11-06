@@ -16,10 +16,10 @@ entity IMEM is
     );
     port
     (
-        addr: in natural range 0 to MEM_DEPTH - 1 :=0 ;
+        addr: in natural range 0 to MEM_DEPTH - 1 := 0 ;
         q: out std_logic_vector((N-1) downto 0);
-        data: std_logic_vector((MEM_WIDTH-1) downto 0);
-        we: in std_logic := '0'
+        data: in std_logic_vector((N-1) downto 0) := (others => '0');
+        wr_size: in natural range 0 to 4 := 0
     );
 end IMEM;
 
@@ -85,15 +85,18 @@ architecture rtl of IMEM is
     end function;
 
     signal rom: memory_t := load_mem_from_file(MEM_FILE);
+    signal w: natural := 0;
 begin
     Q_GEN: for i in WORD_BYTES-1 downto 0 generate
         q(MEM_WIDTH*(i+1)-1 downto i*MEM_WIDTH) <= rom(addr + WORD_BYTES - 1 - i) when addr + WORD_BYTES - 1 - i < MEM_DEPTH;
     end generate;
 
-    process(we) begin
-        case we is
-            when '1' => rom(addr) <= data;
-            when others => null;
-        end case;
+    process(wr_size) begin
+        if wr_size > 0 then
+            for i in 0 to wr_size-1 loop
+                rom(addr+i) <= data(MEM_WIDTH*(wr_size-i)-1 downto (wr_size-i-1)*MEM_WIDTH);
+            end loop;
+        end if;
     end process;
+
 end rtl;
