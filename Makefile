@@ -31,7 +31,7 @@ imem.o: imem.txt
 %.ghd: %.o
 	$(CC) -e $(LFLAGS) -o $* $*
 	touch $@
-	@rm -rfv cpu.ghd
+	@fish -c "if test $@ != 'cpu.ghd'; rm -rfv cpu.ghd; end"
 	@rm -rfv tb_$@
 
 sim: $(unit).ghw.rm $(unit).ghw
