@@ -32,6 +32,7 @@ imem.o: imem.txt
 	$(CC) -e $(LFLAGS) -o $* $*
 	touch $@
 	@rm -rfv cpu.ghd
+	@rm -rfv tb_$@
 
 sim: $(unit).ghw.rm $(unit).ghw
 	@echo "Opening waveform" $<
