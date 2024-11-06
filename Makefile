@@ -16,7 +16,7 @@ all: $(VHD_FILES:.vhd=.ghd)
 
 re: clean all
 
-cpu: imem.txt program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd imem.ghd imm_ext.ghd mux21.ghd cpu.ghd
+cpu: imem.txt program_counter.ghd program_counter_auto.ghd single_port_rom_async.ghd register_bench.ghd ALU.ghd controleur.ghd imem.ghd imm_ext.ghd mux21.ghd lm.ghd cpu.ghd
 	@rm -rfv tb_cpu.ghd
 
 imem.o: imem.txt
