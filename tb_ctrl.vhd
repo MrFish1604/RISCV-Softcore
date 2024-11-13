@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity tb_ctrl is
-	generic 
+	generic
 	(
 		N_t : natural := 32;
 		N_OP_t : natural := 4
@@ -13,22 +13,26 @@ end entity tb_ctrl;
 architecture behav of tb_ctrl is
 
 	component controleur
-	generic 
+	generic
 	(
 		N : natural := N_t;
 		N_OP : natural := N_OP_t
 	);
-	
+
 	port
 	(
 		instr: in std_logic_vector((N-1) downto 0);
         load: out std_logic:='0';
         we: out std_logic:='1';
-        aluOp: out std_logic_vector((N_OP-1) downto 0)
+        aluOp: out std_logic_vector((N_OP-1) downto 0);
+        RI_sel: out std_logic;
+        loadAcc: out std_logic;
+        wr_size: out natural range 0 to N_OP := 0;
+        imm_type: out std_logic
 	);
 	end component;
 
-	signal instr_t: std_logic_vector((N_t-1) downto 0) := std_logic_vector(to_unsigned(0, N_t));
+	signal instr_t: std_logic_vector((N_t-1) downto 0) := (others => '0');
     signal load_t: std_logic:='0';
     signal we_t: std_logic:='1';
     signal aluOp_t: std_logic_vector((N_OP_t-1) downto 0);
@@ -63,6 +67,7 @@ begin
 	funct3 <= std_logic_vector(to_unsigned(1, 3));
 	wait for 10 ns;
 	funct7 <= "0000000";
+	wait;
 	end process;
 
 end behav;
