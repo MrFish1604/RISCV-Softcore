@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use std.textio.all;
 
-entity tb_immext is
+entity tb_imm_ext is
     generic
     (
         N: natural := 32;
@@ -11,23 +11,22 @@ entity tb_immext is
         SHAMT_SIZE: natural := 5;
         TYPE_SIZE: natural := 1
     );
-end tb_immext;
+end tb_imm_ext;
 
-architecture behav of tb_immext is
+architecture behav of tb_imm_ext is
     type instr_set_t is array(0 to 9) of std_logic_vector((N-1) downto 0);
-    type expected_t is array(0 to 19) of integer;
+    type expected_t is array(0 to 29) of integer;
     component imm_ext
         generic
         (
             N: natural := N;
             IMM_SIZE: natural := IMM_SIZE;
-            SHAMT_SIZE: natural := SHAMT_SIZE;
-            TYPE_SIZE: natural := TYPE_SIZE
+            SHAMT_SIZE: natural := SHAMT_SIZE
         );
         port
         (
             instr: in std_logic_vector((N-1) downto 0);
-            instType: in std_logic_vector((TYPE_SIZE-1) downto 0);
+            instType: in std_logic;
             immExt: out std_logic_vector((N-1) downto 0)
         );
     end component;
@@ -46,10 +45,11 @@ architecture behav of tb_immext is
     signal instr: std_logic_vector((N-1) downto 0); --:= instr_set(0);
     signal ext: std_logic_vector((N-1) downto 0);
     signal expected: expected_t  := (
-        -319, -1128, -872, -1884, -1418, 1009, -634, -1754, 687, 1081, -- instType = 0
-        1, 24, 24, 4, 22, 17, 6, 6, 15, 25 -- instType = 1
+        -319, -1128, -872, -1884, -1418, 1009, -634, -1754, 687, 1081, -- instr(13 downto 12) /= "01"
+        1, 24, 24, 4, 22, 17, 6, 6, 15, 25, -- instr(13 downto 12) = "01"
+        -319, -1134, -870, -1859, -1432, 998, -617, -1759, 703, 1060 -- instType = '1'
     );
-    signal instType: std_logic_vector((TYPE_SIZE-1) downto 0);
+    signal instType: std_logic;
     signal ok: boolean := false;
     signal failed_test: natural := 0;
 begin
@@ -58,8 +58,7 @@ begin
         (
             N => N,
             IMM_SIZE => IMM_SIZE,
-            SHAMT_SIZE => SHAMT_SIZE,
-            TYPE_SIZE => TYPE_SIZE
+            SHAMT_SIZE => SHAMT_SIZE
         )
         port map
         (
@@ -71,10 +70,10 @@ begin
     process
     variable l: line;
     begin
-        for i in 0 to 19 loop
-            instType <= "0" when i < 10 else "1";
+        for i in 0 to 29 loop
+            instType <= '0' when i < 20 else '1';
             instr <= instr_set(i mod 10);
-            if i >= 10 then
+            if i >= 10 and i<20 then
                 instr(13 downto 12) <= "01";
             end if;
             wait for 10 ns;

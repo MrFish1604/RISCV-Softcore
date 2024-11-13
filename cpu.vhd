@@ -135,12 +135,11 @@ architecture rtl of CPU is
         generic(
             N: natural := N;
             IMM_SIZE: natural := IMM_SIZE;
-            SHAMT_SIZE: natural := SHAMT_SIZE;
-            TYPE_SIZE: natural := 1
+            SHAMT_SIZE: natural := SHAMT_SIZE
         );
         port(
             instr: in word_t;
-            instType: in std_logic_vector((TYPE_SIZE-1) downto 0);
+            instType: in std_logic;
             immExt: out word_t
         );
     end component;
@@ -287,13 +286,12 @@ begin
         (
             N => N,
             IMM_SIZE => IMM_SIZE,
-            SHAMT_SIZE => SHAMT_SIZE,
-            TYPE_SIZE => 1
+            SHAMT_SIZE => SHAMT_SIZE
         )
         port map
         (
             instr => instr,
-            instType => "0",
+            instType => '0',
             immExt => immExt
         );
 
