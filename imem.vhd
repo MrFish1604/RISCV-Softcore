@@ -19,7 +19,8 @@ entity IMEM is
         addr: in natural range 0 to MEM_DEPTH - 1 := 0 ;
         q: out std_logic_vector((N-1) downto 0);
         data: in std_logic_vector((N-1) downto 0) := (others => '0');
-        wr_size: in natural range 0 to 4 := 0
+        wr_size: in natural range 0 to 4 := 0;
+        clk: in std_logic
     );
 end IMEM;
 
@@ -91,9 +92,10 @@ begin
         q(MEM_WIDTH*(i+1)-1 downto i*MEM_WIDTH) <= rom(addr + WORD_BYTES - 1 - i) when addr + WORD_BYTES - 1 - i < MEM_DEPTH;
     end generate;
 
-    process(wr_size) begin
-        if wr_size > 0 then
+    process(clk) begin
+        if rising_edge(clk) and wr_size > 0 then
             for i in 0 to wr_size-1 loop
+                -- report "IMEM: Writing to address " & integer'image(addr) & " + " & integer'image(i) & " = " & integer'image(addr+i) severity NOTE;
                 rom(addr+i) <= data(MEM_WIDTH*(wr_size-i)-1 downto (wr_size-i-1)*MEM_WIDTH);
             end loop;
         end if;

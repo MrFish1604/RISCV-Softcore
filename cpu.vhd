@@ -9,7 +9,7 @@ entity CPU is
         N_OP: natural := 4;
         N_ADDR_IMEM: natural := 8;
         MEM_DEPTH: natural := 2**N_ADDR_IMEM;
-        MEM_FILE: string := "prgms/test_load.hex";
+        MEM_FILE: string := "prgms/test_store2.hex";
         N_BIT_ADDR: natural := 5;
         IMM_SIZE: natural := 12;
         SHAMT_SIZE: natural := 5;
@@ -43,6 +43,9 @@ architecture rtl of CPU is
     signal dmem_out: word_t;
     signal alu_out: word_t;
     signal lm_out: word_t;
+
+    signal mem_write_size: natural range 0 to N_OP;
+    signal imm_type: std_logic;
 
     alias funct7: std_logic_vector(6 downto 0) is instr(31 downto 25);
     alias rs2 : std_logic_vector(4 downto 0) is instr(24 downto 20);
@@ -79,7 +82,8 @@ architecture rtl of CPU is
             aluOp: out std_logic_vector((N_OP-1) downto 0);
             RI_sel: out std_logic;
             loadAcc: out std_logic;
-            wrMem: out std_logic
+            wr_size: out natural range 0 to N_OP;
+            imm_type: out std_logic
         );
     end component;
 
@@ -107,8 +111,11 @@ architecture rtl of CPU is
 	    );
 	    port
 	    (
-	    	addr	: in natural range 0 to MEM_DEPTH - 1;
-	    	q		: out std_logic_vector((N - 1) downto 0)
+	    	addr : in natural range 0 to MEM_DEPTH - 1;
+	    	q : out std_logic_vector((N - 1) downto 0);
+			data: in std_logic_vector((N-1) downto 0);
+            wr_size: in natural range 0 to 4;
+            clk: in std_logic
 	    );
     end component;
 
@@ -204,7 +211,8 @@ begin
             aluOp => aluOp,
             RI_sel => RI_sel,
             loadAcc => loadDMEM,
-            wrMem => open
+            wr_size => mem_write_size,
+            imm_type => imm_type
         );
 
     pc: program_counter_auto
@@ -223,7 +231,10 @@ begin
     imem1: imem port map
     (
         addr => logic2integer(pc_out),
-        q => instr
+        q => instr,
+        data => (others => '0'),
+        wr_size => 0,
+        clk => '0'
     );
 
     dmem: imem
@@ -234,7 +245,10 @@ begin
         port map
         (
             addr => logic2integer(alu_out),
-            q => dmem_out
+            q => dmem_out,
+            data => BusB,
+            wr_size => mem_write_size,
+            clk => clk
         );
 
     lm1: lm
@@ -291,7 +305,7 @@ begin
         port map
         (
             instr => instr,
-            instType => '0',
+            instType => imm_type,
             immExt => immExt
         );
 
@@ -325,7 +339,7 @@ begin
         );
     DEBUG_CODE:if DEBUG generate
         process(pc_out) begin
-            report "PC: " & integer'image(logic2integer(pc_out));
+            report "PC = " & integer'image(logic2integer(pc_out));
         end process;
     end generate DEBUG_CODE;
 end rtl;

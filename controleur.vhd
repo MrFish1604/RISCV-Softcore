@@ -35,6 +35,7 @@ end controleur;
 architecture rtl of controleur is
 begin
     -- RI_sel <= '0' when opcode=R_TYPE else '1' when opcode=I_TYPE or opcode=L_TYPE else 'U';
+    we <= '0' when opcode=S_TYPE else '1';
     RI_sel <= not opcode(5) or not opcode(4); -- '0' if R_TYPE else '1'
     aluOp <= "0000" when opcode=L_TYPE else funct7(5) & funct3 when opcode=R_TYPE else "0" & funct3;
     loadAcc <= '1' when opcode=L_TYPE else '0';
