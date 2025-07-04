@@ -1,6 +1,6 @@
 # RISC-V implementation in VHDL
 This project is part of the course "*Conception de systèmes sur puce*" at [TELECOM Nancy](https://telecomnancy.univ-lorraine.fr/).
-It aims to implement a 32 bits RISC-V processor in VHDL.
+It aims to implement an RV32I processor in VHDL.
 
 ## Run Simulations
 I provide a Makefile to compile the project and run simulations.
